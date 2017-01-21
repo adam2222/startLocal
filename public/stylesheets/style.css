@@ -1,5 +1,15 @@
 ul.collection, ul.collection li {
   border: 0px; }
 
+.noBorder {
+  border: 0px; }
+
 td img {
   max-width: 100px; }
+
+tbody tr td, th {
+  border: solid 1px;
+  border-color: #b1aeb1; }
+
+.bold {
+  font-weight: bold; }

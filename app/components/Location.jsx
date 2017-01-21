@@ -3,107 +3,142 @@ import { connect } from 'react-redux'
 import { locationSearch } from '../reducers/locationReducers'
 
 
-
 const LocationComponent = (props) => {
-  let officesInput = props.location.offices
-  let officialsInput = props.location.officials
-  let offices = officesInput && officesInput.map(office => office.name)
-  let officeHolders = officialsInput && officialsInput.map(officialInfo => officialInfo)
+  let offices = props.location.offices
+  let officeHolders = props.location.officials
+
+  const makeSocialLink = (type, id) => {
+    switch (type) {
+      case 'GooglePlus':
+        return `https://plus.google.com/${id}`
+      case 'Twitter':
+        return `https://twitter.com/${id}`;
+      case 'Facebook':
+        return `https://www.facebook.com/${id}`;
+      case 'YouTube':
+        return `https://www.youtube.com/${id}`;
+      default:
+        return id;
+    }
+  }
+
+  const makeTelLink = tel => {
+    const formattedTel = tel.replace(/\D+/g, '')
+    return formattedTel;
+  }
 
   return (
   <div>
     <form onSubmit={evt => {
       evt.preventDefault();
-      console.log('click')
       props.locationSearch(evt.target.address.value)
     } }>
       <input name="address" placeholder="Type in your address" />
-      <input type="submit" value="Get info for your location" />
+      <input type="submit" placeholder="Get info for your location" />
     </form>
+
     <br></br>
+
     <table className="striped z-depth-2">
       <thead>
-        <tr>
+        <tr className="z-depth-2">
           <th data-field="office">Official</th>
-          <th data-field="office"></th>
           <th data-field="name">Office Holder</th>
+          <th></th>
           <th data-field="Party">Party</th>
           <th data-field="Telephone">Telephone</th>
+          <th data-field="Social Media">Social Media</th>
           <th data-field="Homepage">Homepage</th>
           <th data-field="Address">Address</th>
         </tr>
       </thead>
-      <tbody>
+
+      <tbody className="striped z-depth-2">
+
       {offices && offices.map((office, idx) => {
+        let realIdx = office.officialIndices && office.officialIndices[0]
+        let officeHolder = officeHolders[realIdx] || officeHolders[idx]
+
         return(
-          <tr key={idx}>
-            <td>{office}</td>
-            <td>{officeHolders[idx].name}</td>
-            <td>{ officeHolders[idx].photoUrl &&
-                <img src={`${officeHolders[idx].photoUrl}`}></img>
+          <tr className="striped z-depth-2" key={idx}>
+            <td className="bold">{office.name}</td>
+
+            <td className="bold">{officeHolder.name}</td>
+
+            <td>{ officeHolder.photoUrl ?
+                <img src={`${officeHolder.photoUrl}`}></img>
+                :
+                <img src={`/images/default-headshot.jpg`}></img>
               }
             </td>
-            <td>{officeHolders[idx].party}</td>
-            <td>
-              <ul className="collection">
-                {officeHolders[idx].phones.map((phone, idx) => {
-                  return (
-                    <li key={idx}>
-                      {phone}
-                    </li>
-                  )
-                })}
 
-              </ul>
-            </td>
+            <td>{officeHolder.party}</td>
+
             <td>
               <ul className="collection">
-                {officeHolders[idx].channels && officeHolders[idx].channels.map((channel, idx) => {
+                {officeHolder.phones && officeHolder.phones.map((phone, idx) => {
                   return (
                     <li key={idx}>
-                      {channel.type}: {channel.id}
+                      <a href={`skype:+1${makeTelLink(phone)}?call`}>{phone}</a>
                     </li>
                   )
                 })}
               </ul>
             </td>
+
             <td>
               <ul className="collection">
-                {officeHolders[idx].urls && officeHolders[idx].urls.map((url, idx) => {
+                {officeHolder.channels && officeHolder.channels.map((channel, idx) => {
                   return (
                     <li key={idx}>
-                      {url}
+                      {channel.type}: <a href={makeSocialLink(channel.type, channel.id)} target="_blank" rel="noopener noreferrer">{channel.id}</a>
                     </li>
                   )
                 })}
               </ul>
             </td>
+
+            <td>
+              <ul className="collection">
+                {officeHolder.urls && officeHolder.urls.map((url, idx) => {
+                  return (
+                    <li key={idx}>
+                      <a href={`${url}`} target="_blank" rel="noopener noreferrer">{url}</a>
+                    </li>
+                  )
+                })}
+              </ul>
+            </td>
+
             <td>
               <table>
-                {officeHolders[idx].address && officeHolders[idx].address.map((address, idx) => {
+                <tbody>
+                {officeHolder.address && officeHolder.address.map((address, idx) => {
                   return (
                     <tr key={idx} >
-                      <ul className="collection">
-                            <li>
-                              {address.line1}
-                            </li>
-                            <li>
-                              {address.line2}
-                            </li>
-                            <li>
-                              {address.city}
-                            </li>
-                            <li>
-                              {address.state}
-                            </li>
-                            <li>
-                              {address.zip}
-                            </li>
-                      </ul>
+                      <td className="noBorder">
+                        <ul className="collection">
+                           <li>
+                             {address.line1}
+                           </li>
+                           <li>
+                             {address.line2}
+                           </li>
+                           <li>
+                             {address.city}
+                           </li>
+                           <li>
+                             {address.state}
+                           </li>
+                           <li>
+                             {address.zip}
+                           </li>
+                     </ul>
+                      </td>
                     </tr>
                   )
                 })}
-
+                </tbody>
               </table>
             </td>
 

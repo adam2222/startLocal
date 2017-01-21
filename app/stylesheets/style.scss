@@ -2,6 +2,19 @@ ul.collection, ul.collection li {
   border: 0px;
 }
 
+.noBorder {
+  border: 0px;
+}
+
 td img {
   max-width: 100px;
+}
+
+tbody tr td, th {
+  border: solid 1px;
+  border-color: rgb(177, 174, 177);
+}
+
+.bold {
+  font-weight: bold;
 }

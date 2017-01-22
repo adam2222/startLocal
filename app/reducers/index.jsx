@@ -2,8 +2,9 @@ import { combineReducers } from 'redux'
 
 const rootReducer = combineReducers({
   auth: require('./auth').default,
-  location: require('./locationReducers').default
-
+  location: require('./locationReducers').default,
+  legislation: require('./legislationReducers').default,
+  bill: require('./bill').default
 })
 
 export default rootReducer

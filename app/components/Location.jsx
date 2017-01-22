@@ -10,13 +10,31 @@ const LocationComponent = (props) => {
   const makeSocialLink = (type, id) => {
     switch (type) {
       case 'GooglePlus':
-        return `https://plus.google.com/${id}`
+      return (
+        <a href={`https://plus.google.com/${id}`} data-screen-name={id} target="_blank" rel="noopener noreferrer">
+          {id}
+        </a>
+      )
       case 'Twitter':
-        return `https://twitter.com/${id}`;
+        return (
+          <div>
+            <a href={`https://twitter.com/messages/compose?recipient_id=${id}`} className="twitter-dm-button" data-screen-name={id} data-show-count="false" target="_blank" rel="noopener noreferrer">
+              @{id}
+            </a><script async src="https://platform.twitter.com/widgets.js"></script>
+          </div>
+        );
       case 'Facebook':
-        return `https://www.facebook.com/${id}`;
+      return (
+        <a href={`https://www.facebook.com/${id}`} data-screen-name={id} target="_blank" rel="noopener noreferrer">
+          {id}
+        </a>
+      )
       case 'YouTube':
-        return `https://www.youtube.com/${id}`;
+        return (
+          <a href={`https://www.youtube.com/${id}`} data-screen-name={id} target="_blank" rel="noopener noreferrer">
+            {id}
+          </a>
+        )
       default:
         return id;
     }
@@ -91,7 +109,7 @@ const LocationComponent = (props) => {
                 {officeHolder.channels && officeHolder.channels.map((channel, idx) => {
                   return (
                     <li key={idx}>
-                      {channel.type}: <a href={makeSocialLink(channel.type, channel.id)} target="_blank" rel="noopener noreferrer">{channel.id}</a>
+                      {channel.type}: {makeSocialLink(channel.type, channel.id)}
                     </li>
                   )
                 })}

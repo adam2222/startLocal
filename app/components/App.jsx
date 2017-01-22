@@ -3,7 +3,6 @@ import React from 'react';
 
 
 export default function App (props) {
-  console.log("HI")
   return (
     <div>
 

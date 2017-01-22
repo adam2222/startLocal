@@ -45,6 +45,18 @@ const LocationComponent = (props) => {
     return formattedTel;
   }
 
+  const findPhoto = (officeHolder) => {
+    if (officeHolder.name.search("Trump") != -1) {
+      return (<img src='/images/trump.jpg'></img>)
+    } else if (officeHolder.name.search("Pence") !== -1) {
+      return (<img src={'/images/pence1.jpeg'}></img>)
+    } else if (officeHolder.photoUrl) {
+      return (<img src={`${officeHolder.photoUrl}`}></img>)
+    } else {
+      return (<img src={`/images/default-headshot.jpg`}></img>)
+    }
+  }
+
   return (
   <div>
     <form onSubmit={evt => {
@@ -83,11 +95,9 @@ const LocationComponent = (props) => {
 
             <td className="bold">{officeHolder.name}</td>
 
-            <td>{ officeHolder.photoUrl ?
-                <img src={`${officeHolder.photoUrl}`}></img>
-                :
-                <img src={`/images/default-headshot.jpg`}></img>
-              }
+            <td>
+              { findPhoto(officeHolder) }
+
             </td>
 
             <td>{officeHolder.party}</td>

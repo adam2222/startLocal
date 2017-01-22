@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_KEY = "AIzaSyCnBMWR-0TuhfB1YC12emEJqANME-Re3No"
+const API_KEY = "1661ed6bd89881343e2d23be0db1b9aa"
 
 const POPULATE_SEARCH_RESULTS = 'POPULATE_SEARCH_RESULTS'
 
@@ -12,11 +12,12 @@ export const populateSearchResults = (searchResults) => {
 
 export const legislationSearch = (location, searchString) => {
   return dispatch => {
-    axios.get(`https://api.legiscan.com/?key=1661ed6bd89881343e2d23be0db1b9aa&op=search&state=${location}&query=${searchString}`)
+    axios.get(`https://api.legiscan.com/?key=${API_KEY}&op=search&state=${location}&query=${searchString}`)
     .then(legiScanData => legiScanData.data)
     .then(legiScanJSON => {
       dispatch(populateSearchResults(legiScanJSON))
     })
+    // .then(axios.get(`https://api.legiscan.com/?key=${API_KEY}&op=getBillText&id=${doc_id}`)
     .catch(err => console.error(err))
   }
 }

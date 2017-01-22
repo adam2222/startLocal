@@ -16,7 +16,7 @@ const Legislation = props => {
             {bill.description}
           </li>
           <li>
-            {bill.url}
+            <a href={bill.state_link} target="_blank" rel="noopener noreferrer">{bill.state_link}</a>
           </li>
           <li>
             {bill.committee.name}

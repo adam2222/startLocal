@@ -18,7 +18,6 @@ import { Link } from 'react-router'
 // Propublica
 // X-API-Key: bWV7cV8AlV9t2sWAiMWPKoOMtMMvSr11XLQWO4gb
 
-// https://api.legiscan.com/?key=1661ed6bd89881343e2d23be0db1b9aa&op=search&state=${NY}&query=${"abortion"}
 
 const Legislation = props => {
   let results = props.searchResults

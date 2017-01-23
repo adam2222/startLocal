@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { locationSearch } from '../reducers/locationReducers'
+import { legislationSearch } from '../reducers/legislationReducers'
 
 
 const LegislationSearch = (props) => {
@@ -9,10 +9,10 @@ const LegislationSearch = (props) => {
   <div>
       <form onSubmit={evt => {
         evt.preventDefault();
-        props.locationSearch(evt.target.address.value)
+        props.legislationSearch(evt.target.address.value)
       } }>
         <input id="search" type="search" name="address" placeholder="Search legislation by keyword or phrase" />
-        <input type="submit" value={`Search legislation in ${this.props.location}`} />
+        <input type="submit" value={`Search legislation in ${props.location}`} />
       </form>
   </div>
 )}

@@ -10,31 +10,12 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 class SearchContainer extends Component {
   constructor(props){
     super(props)
-    this.state = {
-      searchBar: (<div></div>),
-      buttonTitle: "Start Local",
-      buttonTitles: ["Where do you live?", "What do you care about?"],
-      searchBars: [(<LocationSearch key="1" />), (<LegislationSearch key="2"/>)]
-    }
-    this.handleClick = this.handleClick.bind(this)
-  }
-
-
-  handleClick(searchBar, buttonTitle) {
-    let newSearchBars = this.state.searchBars;
-    let newButtonTitles = this.state.buttonTitles;
-
-    this.setState({
-      searchBar,
-      buttonTitle,
-      searchBars: newSearchBars,
-      buttonTitles: newButtonTitles
-    })
   }
 
 render() {
-  let searchBars = this.state.searchBars
-  let buttonTitles = this.state.buttonTitles
+  let searchBar = this.props.searchBars && this.props.searchBars[0]
+  let header = this.props.headers && this.props.headers[0]
+  console.log('HEADERS', header)
 
   return (
     <div className="container">
@@ -42,32 +23,43 @@ render() {
       <br></br>
       <br></br>
       <div className="row center">
-        <button id="download-button"
-          className="btn-large waves-effect waves-light teal lighten-1"
-          onClick={() => this.handleClick(searchBars.shift(), buttonTitles.shift())}>
-          {this.state.buttonTitle}
-        </button>
-
-        <br></br>
-        <br></br>
-        <br></br>
-
         <ReactCSSTransitionGroup
           transitionName="example"
           transitionAppear={true}
           transitionAppearTimeout={700}
           transitionEnterTimeout={700}
           transitionLeaveTimeout={500}>
-           {this.state.searchBar}
 
+          { header }
+          <br></br>
+          <br></br>
+          <br></br>
+
+          { searchBar }
          </ReactCSSTransitionGroup>
       </div>
-
-
-      </div>
+    </div>
   )}
 
 }
 
+  // {header}
+const mapStateToProps = (state) => {
 
-export default SearchContainer
+  return {
+    location: state.location,
+    headers: state.ui.headers,
+    searchBars: state.ui.searchBars
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateUi: () => {
+      return dispatch(updateUi())
+    }
+  }
+}
+
+
+export default connect (mapStateToProps, mapDispatchToProps) (SearchContainer)

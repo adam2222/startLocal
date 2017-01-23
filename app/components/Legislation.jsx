@@ -4,35 +4,13 @@ import { legislationSearch } from '../reducers/legislationReducers'
 import { Link } from 'react-router'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
-// https://openstates.org/api/v1/METHOD/
-
-
-// LegiScan
-// https://api.legiscan.com/?key=1661ed6bd89881343e2d23be0db1b9aa&op=search&state=${state}&query=${query}
-    // year Year where 1=all, 2=current, 3=recent, 4=prior, >1900=exact [Default: 2]
-// https://api.legiscan.com/?key=1661ed6bd89881343e2d23be0db1b9aa&op=getBill&id=${bill_id}:
-// https://api.legiscan.com/?key=1661ed6bd89881343e2d23be0db1b9aa&op=getBillText&id=${doc_id}
-// 1661ed6bd89881343e2d23be0db1b9aa
-// last_action_date ?
- // https://api.legiscan.com/?key=1661ed6bd89881343e2d23be0db1b9aa&op=getBill&id=915547
-
-// Propublica
-// X-API-Key: bWV7cV8AlV9t2sWAiMWPKoOMtMMvSr11XLQWO4gb
-
 
 const Legislation = props => {
   let results = props.searchResults
+  console.log('RESULTS', results)
 
   return (
     <div>
-      <ReactCSSTransitionGroup
-      transitionName="example"
-      transitionAppear={true}
-      transitionAppearTimeout={1000}
-      transitionEnter={false}
-      transitionLeave={false}>
-      <h1>Fading at Initial Mount</h1>
-    </ReactCSSTransitionGroup>
       <form onSubmit={evt => {
         evt.preventDefault();
         let searchString = evt.target.search.value
@@ -40,7 +18,7 @@ const Legislation = props => {
         } }>
 
         <input name="search" placeholder="What do you care about?" />
-        <input type="submit" value="Click to search" />
+        <input className="btn-large waves-effect waves-light teal lighten-1" type="submit" value="Click to search" />
       </form>
 
       {results.searchresult && Object.keys(results.searchresult).map((legislationKey, idx) => {
@@ -61,9 +39,6 @@ const Legislation = props => {
   )
 
 }
-
-
-
 
 
 const mapStateToProps = state => {

@@ -6,11 +6,14 @@ import { legislationSearch } from '../reducers/legislationReducers'
 const Legislation = props => {
   let bill = props.bill.bill && props.bill.bill.bill
   return (
-    <div>
+    <div className="container">
       { bill && (
         <ul className="container">
+          <br></br>
+          <br></br>
           <li className="bold">
             {bill.title}
+            <br></br>
           </li>
           <li>
             {bill.description}

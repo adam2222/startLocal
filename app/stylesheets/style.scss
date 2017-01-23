@@ -24,12 +24,12 @@ tbody tr td, th {
 }
 
 .example-enter.example-enter-active {
-  opacity: 0.5;
+  opacity: 1;
   transition: opacity 700ms ease-in;
 }
 
 .example-leave {
-  opacity: 0.5;
+  opacity: 1;
 }
 
 .example-leave.example-leave-active {

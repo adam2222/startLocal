@@ -22,8 +22,8 @@ let headers = [
     Start Local
     </button>
   ),
-  <h3 key="2">"Where do you live?"</h3>,
-  <h3 key="3">"What do you care about?"</h3>
+  <h3 key="2">Where do you live?</h3>,
+  <h3 key="3">What do you care about?</h3>
 ]
 
 let searchBars = [(<div key="4"></div>),(<LocationSearch key="5" />), (<LegislationSearch key="6" />)]

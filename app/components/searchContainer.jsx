@@ -3,6 +3,7 @@ import React from 'react'
 import { Component } from 'react'
 import { connect } from 'react-redux'
 import { locationSearch } from '../reducers/locationReducers'
+import {updateUi} from '../reducers/uiReducer'
 import LocationSearch from './LocationSearch'
 import LegislationSearch from './LegislationSearch'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
@@ -15,7 +16,6 @@ class SearchContainer extends Component {
 render() {
   let searchBar = this.props.searchBars && this.props.searchBars[0]
   let header = this.props.headers && this.props.headers[0]
-  console.log('HEADERS', header)
 
   return (
     <div className="container">

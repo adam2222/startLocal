@@ -18,11 +18,11 @@ tbody tr td, th {
   opacity: 0.01; }
 
 .example-enter.example-enter-active {
-  opacity: 0.5;
+  opacity: 1;
   transition: opacity 700ms ease-in; }
 
 .example-leave {
-  opacity: 0.5; }
+  opacity: 1; }
 
 .example-leave.example-leave-active {
   opacity: 0.01;

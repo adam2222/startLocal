@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { locationSearch } from '../reducers/locationReducers'
-
+import { updateUi } from '../reducers/uiReducer'
 
 const LocationComponent = (props) => {
 
@@ -10,6 +10,7 @@ const LocationComponent = (props) => {
       <form onSubmit={evt => {
         evt.preventDefault();
         props.locationSearch(evt.target.address.value)
+        props.updateUi();
       } }>
         <input id="search" type="search" name="address" placeholder="Type in your address" />
         <input className="btn-large waves-effect waves-light teal lighten-1" type="submit" value="Get info for your location" />
@@ -28,6 +29,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     locationSearch: locationString => {
       return dispatch(locationSearch(locationString))
+    },
+    updateUi: () => {
+      return dispatch(updateUi())
     }
   }
 }

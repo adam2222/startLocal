@@ -57,16 +57,16 @@ const LocationComponent = (props) => {
     }
   }
 
-  return (
-  <div>
-    <form onSubmit={evt => {
-      evt.preventDefault();
-      props.locationSearch(evt.target.address.value)
-    } }>
-      <input name="address" placeholder="Type in your address" />
-      <input type="submit" placeholder="Get info for your location" />
-    </form>
 
+    // <form onSubmit={evt => {
+    //     evt.preventDefault();
+    //     props.locationSearch(evt.target.address.value)
+    //   } }>
+    //   <input name="address" placeholder="Type in your address" />
+    //   <input type="submit" placeholder="Get info for your location" />
+    // </form>
+  return (
+      <div>
     <br></br>
 
     <table className="striped z-depth-2">

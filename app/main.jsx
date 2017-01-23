@@ -22,10 +22,11 @@ render (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <Route path="/location" component={SearchContainer} />
+        <Route path="/start" component={SearchContainer} />
+        <Route path="/location" component={Location} />
         <Route path="/legislation" component={Legislation} />
         <Route path="/bill/:id" component={Bill} onEnter={singleBillOnEnter} />
-        <IndexRedirect to="/location" />
+        <IndexRedirect to="/start" />
       </Route>
     </Router>
   </Provider>,

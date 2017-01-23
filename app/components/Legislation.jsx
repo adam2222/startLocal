@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { legislationSearch } from '../reducers/legislationReducers'
 import { Link } from 'react-router'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 // https://openstates.org/api/v1/METHOD/
 
@@ -24,6 +25,14 @@ const Legislation = props => {
 
   return (
     <div>
+      <ReactCSSTransitionGroup
+      transitionName="example"
+      transitionAppear={true}
+      transitionAppearTimeout={1000}
+      transitionEnter={false}
+      transitionLeave={false}>
+      <h1>Fading at Initial Mount</h1>
+    </ReactCSSTransitionGroup>
       <form onSubmit={evt => {
         evt.preventDefault();
         let searchString = evt.target.search.value

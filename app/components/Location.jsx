@@ -76,10 +76,10 @@ const LocationComponent = (props) => {
           <th data-field="name">Office Holder</th>
           <th></th>
           <th data-field="Party">Party</th>
-          <th data-field="Telephone">Telephone</th>
+          <th data-field="Telephone">Telephone <i className="tiny material-icons">phone</i></th>
           <th data-field="Social Media">Social Media</th>
           <th data-field="Homepage">Homepage</th>
-          <th data-field="Address">Address</th>
+          <th data-field="Address">Address </th>
         </tr>
       </thead>
 

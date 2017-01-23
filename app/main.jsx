@@ -9,6 +9,7 @@ import App from './components/App'
 import Location from './components/Location'
 import Bill from './components/Bill'
 import Legislation from './components/Legislation'
+import SearchContainer from './components/searchContainer'
 import WhoAmI from './components/WhoAmI'
 import {billSearch} from './reducers/bill'
 
@@ -21,7 +22,7 @@ render (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <Route path="/location" component={Location} />
+        <Route path="/location" component={SearchContainer} />
         <Route path="/legislation" component={Legislation} />
         <Route path="/bill/:id" component={Bill} onEnter={singleBillOnEnter} />
         <IndexRedirect to="/location" />

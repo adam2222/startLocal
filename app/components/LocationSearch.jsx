@@ -39,7 +39,7 @@ https://maps.googleapis.com/maps/api/place/queryautocomplete/json?key=YOUR_API_K
         evt.preventDefault();
         props.locationSearch(evt.target.address.value)
       } }>
-        <input name="address" placeholder="Type in your address" />
+        <input id="search" type="search" name="address" placeholder="Type in your address" />
         <input type="submit" value="Get info for your location" />
       </form>
   </div>

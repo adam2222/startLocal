@@ -10,7 +10,6 @@ class SearchContainer extends Component {
   constructor(props){
     super(props)
     this.state = {
-      searchBars: [<LocationSearch />],
       searchBar: (<div></div>)
     }
 
@@ -18,11 +17,15 @@ class SearchContainer extends Component {
   }
 
 
-  handleClick() {
-    this.setState({searchBar: this.state.searchBars.pop()})
+  handleClick(searchBar) {
+    console.log('SEARCHBAR', searchBar)
+    this.setState({searchBar})
   }
 
 render() {
+  let searchBars = [(<LocationSearch />)]
+  // console.log
+
   return (
     <div className="container">
       <br></br>
@@ -31,16 +34,16 @@ render() {
       <div className="row center">
         <button id="download-button"
           className="btn-large waves-effect waves-light teal lighten-1"
-          onClick={this.handleClick}>
+          onClick={() => this.handleClick(searchBars.pop())}>
           Start Local
         </button>
 
         <br></br>
         <br></br>
         <br></br>
-        
+
         <ReactCSSTransitionGroup
-          transitionName="search"
+          transitionName="example"
           transitionEnterTimeout={700}
           transitionLeaveTimeout={700}>
            {this.state.searchBar}

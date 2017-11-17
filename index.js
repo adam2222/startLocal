@@ -21,7 +21,7 @@ Please change it in ${__dirname}/package.json
 
 const reasonableName = /^[a-z0-9\-_]+$/
 if (!reasonableName.test(pkg.name)) {
-  console.error(chalk.red(nameError))
+  
 }
 
 // This will load a secrets file from
@@ -30,13 +30,16 @@ if (!reasonableName.test(pkg.name)) {
 //   or ~/.your_app_name.env.json
 //
 // and add it to the environment.
-const env = Object.create(process.env)
-  , secretsFile = resolve(env.HOME, `.${pkg.name}.env`)
-try {
-  Object.assign(env, require(secretsFile))
+const newEnvObject = Object.create(process.env),
+  envFilePath = resolve(newEnvObject.HOME, `.${pkg.name}.env`)
+
+  try {
+  let envFile = require(envFilePath)
+  Object.assign(newEnvObject, envFile)
+  
 } catch (error) {
-  debug('%s: %s', secretsFile, error.message)
-  debug('%s: env file not found or invalid, moving on', secretsFile)  
+  debug('%s: %s', envFilePath, error.message)
+  debug('%s: env file not found or invalid, moving on', envFilePath)  
 }
 
 module.exports = {
@@ -46,11 +49,11 @@ module.exports = {
     return process.env.NODE_ENV === 'production'
   },
   get baseUrl() {
-    return env.BASE_URL || `http://localhost:${PORT}`
+    return newEnvObject.BASE_URL || `http://localhost:${PORT}`
   },
   get port() {
-    return env.PORT || 1337
+    return newEnvObject.PORT || 1337
   },
   package: pkg,
-  env,
+  env: newEnvObject,
 }
